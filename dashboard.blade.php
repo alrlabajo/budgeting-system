@@ -2,11 +2,13 @@
 @section('dashboard')
 <x-app-layout>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <div class="text-black text-2xl font-medium font-inter leading-9">Dashboard</div>
+    <h2 class="text-black text-2xl font-medium font-inter leading-9 ml-80 mt-5">
+            {{ __('Dashboard') }}
+    </h2>
     <!--May change based on data-->
     <div class="grid grid-cols-1 gap-x-25 p-10 mt-14 lg:grid-cols-2 xl:grid-cols-4 flex">
         <div class="w-[382px] h-20 left-0 top-32 absolute">
-            <div class="w-[382px] h-20 left-80 top-8 absolute bg-white rounded-2xl shadow">
+            <div class="w-[382px] h-20 left-80 top-8 mb-32 absolute bg-white rounded-2xl shadow">
                 <div class="w-32 h-11 left-[21.50px] top-[17.50px] absolute">
                     <div class="w-24 h- left-0 top-0 absolute text-slate-400 text-sm font-bold font-inter leading-tight">Today’s Money</div>
                     <div class="w-20 h-6 left-0 top-[19px] absolute text-gray-700 text-base font-bold font-['Inter'] leading-tight">$53,000</div>
@@ -148,9 +150,33 @@
                                 </div>
                             </td>
                         </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Clinic
+                            </th>
+                            <td class="px-6 py-4">
+                                <div class="flex -space-x-4 rtl:space-x-reverse">
+                                    <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="" alt="">
+                                    <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="" alt="">
+                                    <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="" alt="">
+                                    <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="" alt="">
+                                    <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="" alt="">
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                Not Set
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-base font-medium text-blue-700 dark:text-white">0%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
+                                    <div class="bg-[#4F74BB] h-1.5 rounded-full" style="width: 0%"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
