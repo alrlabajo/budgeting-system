@@ -1,6 +1,7 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+<nav x-data="{ open: false }" class="bg-white w-screen dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-100 mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-100 px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20">
             <div class="flex">
                 <!-- Logo -->
@@ -14,7 +15,7 @@
             <div class="flex-grow"></div>
 
             <!-- Search Bar -->
-            <div class="flex items-center ml-3">
+            <div class="flex items-center">
                 <div class="relative">
                     <svg class="absolute left-3 top-1/2 transform -translate-y-1/2" xmlns="http://www.w3.org/2000/svg" width="24" height="28" viewBox="0 0 24 28" fill="none" aria-hidden="true">
                         <path d="M20.3778 22.6405L14.6174 16.8801M16.5376 12.0798C16.5376 12.9624 16.3637 13.8362 16.026 14.6516C15.6883 15.467 15.1932 16.2078 14.5692 16.8319C13.9451 17.4559 13.2043 17.951 12.3889 18.2887C11.5736 18.6264 10.6997 18.8002 9.81712 18.8002C8.93458 18.8002 8.06068 18.6264 7.24532 18.2887C6.42996 17.951 5.6891 17.4559 5.06505 16.8319C4.441 16.2078 3.94598 15.467 3.60824 14.6516C3.27051 13.8362 3.09668 12.9624 3.09668 12.0798C3.09668 10.2974 3.80472 8.58807 5.06505 7.32774C6.32538 6.06742 8.03475 5.35938 9.81712 5.35938C11.5995 5.35937 13.3089 6.06742 14.5692 7.32774C15.8295 8.58807 16.5376 10.2974 16.5376 12.0798Z" stroke="#434343" stroke-width="1.92012" stroke-linecap="round" stroke-linejoin="round"/>
@@ -22,9 +23,6 @@
                     <input class="w-96 h-10 pl-10 py-1 bg-zinc-100 rounded-lg flex items-center grow shrink basis-0 text-neutral-700 text-base font-normal font-['Nunito Sans'] leading-normal ml-2" placeholder="Search here"></input>
                 </div>
             </div>
-
-
-
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6 relative">
@@ -37,7 +35,7 @@
                                     <path d="M15.0666 17.4732C10.4146 17.4732 6.64331 21.2445 6.64331 25.8966H23.49C23.49 21.2445 19.7187 17.4732 15.0666 17.4732Z" stroke="#434343" stroke-width="2.40667" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
-                            <div class="ml-2">{{ Auth::user()->name }}</div> <!-- {{ Auth::user()->name }} if getting the name from the db record -->
+                            <div class="ml-2 font-['Inter'">{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -48,7 +46,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')" class="font-bold border-b hover:bg-blue-700 hover:text-white active:bg-[#4F74BB]">
+                        <x-dropdown-link :href="route('profile.edit')" class="font-bold border-b hover:bg-blue-700 hover:text-white active:bg-[#4F74BB] rounded-md">
                             {{ __('My Account') }}
                         </x-dropdown-link>
 
@@ -56,7 +54,7 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
-                            <x-dropdown-link :href="route('logout')" class="hover:text-[#EFF0FF] hover:bg-blue-700 active:bg-[#2D6B9A] active:text-[#EFF0FF] rounded-md flex items-center justify-between stroke-[#71717A] hover:stroke-white"
+                            <x-dropdown-link :href="route('logout')" class="hover:bg-blue-700 hover:text-[#EFF0FF] active:bg-[#4F74BB] active:text-[#EFF0FF] rounded-md flex items-center justify-between stroke-[#71717A] hover:stroke-white"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
@@ -90,62 +88,49 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            @yield('dashboard')
             </x-responsive-nav-link>
-        </div>
-
-        <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
-            <div class="px-4">
-                <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-            </div>
-
-            <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
-                </x-responsive-nav-link>
-
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-responsive-nav-link>
-                </form>
-            </div>
         </div>
     </div>
 
     <!--Side Navigation-->
-    <div class="fixed left-0 top-15 h-full bg-[#2D349A] text-white w-64 flex flex-col items-center">
-        <div class="w-56 h-11 text-white text-2xl font-semibold font-['Inter'] leading-9 ml-12 mt-4">Accounting</div>
-            <!-- General Section -->
-            <button class="w-56 px-4 py-2 flex items-center rounded-md hover:bg-[#2C56A6] active:bg-[#4F74BB]">
+    <div class="absolute w-[276.96px] h-full left-0 top-20 h-full bg-[#2D349A] text-white w-64 flex flex-col items-center">
+        <div class="w-[228.12px] h-11 text-white text-2xl font-semibold font-['Inter'] leading-9 ml-12 mt-4">Accounting</div>
+            <!-- Dashboard Section -->
+            <a href="{{ route('dashboard') }}" class="w-56 px-4 py-2 flex items-center rounded-md hover:bg-[#2C56A6] active:bg-[#4F74BB]">
                 <div class="w-9 h-9 rounded-md shadow justify-center items-center flex">
                         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
                         <path d="M7.51562 19.1467V10.8134H12.5156V19.1467M2.51562 8.31338L10.0156 2.48004L17.5156 8.31338V17.48C17.5156 17.9221 17.34 18.346 17.0275 18.6586C16.7149 18.9711 16.291 19.1467 15.849 19.1467H4.18229C3.74026 19.1467 3.31634 18.9711 3.00378 18.6586C2.69122 18.346 2.51563 17.9221 2.51562 17.48V8.31338Z" stroke="#FAFAFA" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                 </div>
-                <div class="text-white text-xl font-normal font-sans leading-7 ml-3">General</div>
-            </button>
+                <div class="text-white text-xl font-normal font-sans leading-7 ml-3 font-['Nunito Sans'] ">Dashboard</div>
+            </a>
             <!-- Profile Section -->
-            <button class="w-56 px-4 py-2 flex items-center rounded-md hover:bg-[#2C56A6] active:bg-[#4F74BB]">
+            <a href="{{ route('profile.edit') }}" class="w-56 px-4 py-2 flex items-center rounded-md hover:bg-[#2C56A6] active:bg-[#4F74BB]">
                 <div class="w-9 h-9 rounded-md shadow justify-center items-center flex">
                     <div class="w-6 h-6 relative">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-                        <path d="M12.0156 13.44C14.777 13.44 17.0156 11.2014 17.0156 8.44C17.0156 5.67858 14.777 3.44 12.0156 3.44C9.2542 3.44 7.01562 5.67858 7.01562 8.44C7.01562 11.2014 9.2542 13.44 12.0156 13.44ZM12.0156 13.44C14.1374 13.44 16.1722 14.2829 17.6725 15.7831C19.1728 17.2834 20.0156 19.3183 20.0156 21.44M12.0156 13.44C9.89389 13.44 7.85906 14.2829 6.35877 15.7831C4.85848 17.2834 4.01563 19.3183 4.01562 21.44" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                            <path d="M12.0156 13.44C14.777 13.44 17.0156 11.2014 17.0156 8.44C17.0156 5.67858 14.777 3.44 12.0156 3.44C9.2542 3.44 7.01562 5.67858 7.01562 8.44C7.01562 11.2014 9.2542 13.44 12.0156 13.44ZM12.0156 13.44C14.1374 13.44 16.1722 14.2829 17.6725 15.7831C19.1728 17.2834 20.0156 19.3183 20.0156 21.44M12.0156 13.44C9.89389 13.44 7.85906 14.2829 6.35877 15.7831C4.85848 17.2834 4.01563 19.3183 4.01562 21.44" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
                 </div>
-                <div class="text-white text-xl font-normal font-sans leading-7 ml-3">My Profile</div>
+                <div class="text-white text-xl font-normal font-sans leading-7 ml-3 font-['Nunito Sans'] ">My Profile</div>
+            </a>
+
+             <!-- Notifications Section -->
+             <button type="submit" class="w-56 px-4 py-2 flex items-center rounded-md hover:bg-[#2C56A6] active:bg-[#4F74BB]">
+                <div class="w-9 h-9 rounded-md shadow justify-center items-center flex">
+                    <div class="w-5 h-5 relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                            <path d="M8.599 18.1934C8.73848 18.4471 8.94354 18.6587 9.19274 18.806C9.44194 18.9534 9.72615 19.0312 10.0157 19.0312C10.3052 19.0312 10.5894 18.9534 10.8386 18.806C11.0878 18.6587 11.2928 18.4471 11.4323 18.1934M5.01562 7.36005C5.01562 6.03396 5.54241 4.76219 6.48009 3.82451C7.41777 2.88683 8.68954 2.36005 10.0156 2.36005C11.3417 2.36005 12.6135 2.88683 13.5512 3.82451C14.4888 4.76219 15.0156 6.03396 15.0156 7.36005C15.0156 13.1934 17.5156 14.86 17.5156 14.86H2.51562C2.51562 14.86 5.01562 13.1934 5.01562 7.36005Z" stroke="#FAFAFA" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="text-white text-xl font-normal font-sans leading-7 ml-3 font-['Nunito Sans'] ">Notifications</div>
             </button>
 
             <!-- Workflow Section -->
-            <button class="w-56 px-4 py-2 flex items-center rounded-md hover:bg-[#2C56A6] active:bg-[#4F74BB]">
+            <button type="submit" class="w-56 px-4 py-2 flex items-center rounded-md hover:bg-[#2C56A6] active:bg-[#4F74BB]">
                 <div class="w-9 h-9 rounded-md shadow justify-center items-center flex">
                     <div class="w-5 h-5 relative">
                         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
@@ -160,23 +145,11 @@
                         </svg>
                     </div>
                 </div>
-                <div class="text-white text-xl font-normal font-sans leading-7 ml-3">Workflow</div>
+                <div class="text-white text-xl font-normal font-sans leading-7 ml-3 font-['Nunito Sans'] ">Workflow</div>
             </button>
 
-            <!-- Notifications Section -->
-            <button class="w-56 px-4 py-2 flex items-center rounded-md hover:bg-[#2C56A6] active:bg-[#4F74BB]">
-                <div class="w-9 h-9 rounded-md shadow justify-center items-center flex">
-                    <div class="w-5 h-5 relative">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                            <path d="M8.599 18.1934C8.73848 18.4471 8.94354 18.6587 9.19274 18.806C9.44194 18.9534 9.72615 19.0312 10.0157 19.0312C10.3052 19.0312 10.5894 18.9534 10.8386 18.806C11.0878 18.6587 11.2928 18.4471 11.4323 18.1934M5.01562 7.36005C5.01562 6.03396 5.54241 4.76219 6.48009 3.82451C7.41777 2.88683 8.68954 2.36005 10.0156 2.36005C11.3417 2.36005 12.6135 2.88683 13.5512 3.82451C14.4888 4.76219 15.0156 6.03396 15.0156 7.36005C15.0156 13.1934 17.5156 14.86 17.5156 14.86H2.51562C2.51562 14.86 5.01562 13.1934 5.01562 7.36005Z" stroke="#FAFAFA" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                </div>
-                <div class="text-white text-xl font-normal font-sans leading-7 ml-3">Notifications</div>
-            </button>
-
-            <!-- Recycle Bin Section -->
-            <button class="w-56 px-4 py-2 flex items-center rounded-md hover:bg-[#2C56A6] active:bg-[#4F74BB]">
+            <!-- Files Section -->
+            <button type="submit" class="w-56 px-4 py-2 flex items-center rounded-md hover:bg-[#2C56A6] active:bg-[#4F74BB]">
                 <div class="w-9 h-9 rounded-md shadow justify-center items-center flex">
                     <div class="w-5 h-5 relative">
                         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
@@ -191,11 +164,11 @@
                         </svg>
                     </div>
                 </div>
-                <div class="text-white text-xl font-normal font-sans leading-7 ml-3">Files</div>
+                <div class="text-white text-xl font-normal font-sans leading-7 ml-3 font-['Nunito Sans'] ">Files</div>
             </button>
 
             <!-- Settings Section -->
-            <button class="w-56 mt-52 px-4 py-2 flex items-center rounded-md hover:bg-[#2C56A6] active:bg-[#4F74BB]">
+            <button type="submit" class="w-56 mt-52 px-4 py-2 flex items-center rounded-md hover:bg-[#2C56A6] active:bg-[#4F74BB]">
                 <div class="w-9 h-9 rounded-md shadow justify-center items-center flex">
                     <div class="w-5 h-5 relative">
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
@@ -204,7 +177,7 @@
                         </svg>
                     </div>
                 </div>
-                <div class="text-white text-xl font-normal font-sans leading-7 ml-3">Settings</div>
+                <div class="text-white text-xl font-normal font-sans leading-7 ml-3 font-['Nunito Sans']">Settings</div>
             </button>
         </div>
     </div>
