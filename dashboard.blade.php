@@ -1,5 +1,5 @@
 @extends('layouts.navigation')
-@section('dashboard')
+@section('content')
 <x-app-layout>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <h2 class="text-black text-2xl font-medium font-inter leading-9 ml-80 mt-5">
