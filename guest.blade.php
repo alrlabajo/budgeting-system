@@ -8,17 +8,16 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-gray-900 antialiased">
         <!--Background Color-->
-        <div class="w-screen h-screen relative bg-indigo-800">
+        <div class="w-screen h-screen fixed bg-indigo-800">
         <!--Background Photo-->
-            <img class="w-[1367px] h-screen left-[340px] top-[0px] absolute" src="{{ asset('css/image 2.png') }}"/>
+            <img class="w-[1367px] h-screen left-[340px] top-[0px] fixed" src="{{ asset('css/image 2.png') }}"/>
             <!--Form Container-->
             <div class="w-[550px] h-[600px] left-[74px] top-[52px] absolute">
                 <div class="w-[550px] h-[720.88px] left-0 top-0 absolute bg-white rounded-xl">
@@ -37,10 +36,10 @@
                                 </div>
                             </div>
                             <!--Signed in with-->
-                            <div class="flex-col justify-start items-center flex">
-                                <div class="w-96 h-px opacity-25 border border-slate-600 my-4" style="position: absolute; left: 0px; top: 462px"></div>
-                                <div class="w-40 h-11 p-2.5 bg-white justify-start items-start gap-2.5 inline-flex">
-                                    <label class="w-36 text-center text-zinc-400 text-lg font-normal font-['Inter'] leading-normal bg-white">or sign in with</label>
+                            <div class="flex-col justify-center items-center flex relative">
+                                <div class="p-2.5 w-96 bg-white justify-center items-center gap-2.5 inline-flex">
+                                    <div class="w-36 text-center text-[#999DA3] text-lg font-normal font-['Inter'] leading-normal relative z-10 bg-white">or sign in with</div>
+                                    <div class="line"></div>
                                 </div>
                             </div>
                             <!--Continue with Microsoft-->
