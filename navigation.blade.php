@@ -87,14 +87,14 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-            @yield('dashboard')
+            <x-responsive-nav-link>
+            @yield('content')
             </x-responsive-nav-link>
         </div>
     </div>
 
     <!--Side Navigation-->
-    <div class="absolute w-[276.96px] h-full left-0 top-20 h-full bg-[#2D349A] text-white w-64 flex flex-col items-center">
+    <div class="fixed absolute w-[276.96px] h-full left-0 top-20 h-full bg-[#2D349A] text-white w-64 flex flex-col items-center">
         <div class="w-[228.12px] h-11 text-white text-2xl font-semibold font-['Inter'] leading-9 ml-12 mt-4">Accounting</div>
             <!-- Dashboard Section -->
             <a href="{{ route('dashboard') }}" class="w-56 px-4 py-2 flex items-center rounded-md hover:bg-[#2C56A6] active:bg-[#4F74BB]">
